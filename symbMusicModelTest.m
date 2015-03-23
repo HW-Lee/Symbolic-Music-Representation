@@ -2,6 +2,8 @@ clear all; close all;
 import symbMusicModel.element.*;
 import symbMusicModel.utilds.*;
 
+
+%% MutableArray Testing Code
 array = MutableArray();
 array.add(ones(5, 1));
 if array.size() ~= 5 || sum(array.data(1:array.size())) ~= 5 || length(array.data) ~= 10
@@ -16,6 +18,8 @@ if array.size() ~= 41 || sum(array.data(3:31)) ~= 87 || length(array.data) ~= 41
     error('testcase03 incorrect');
 end
 
+
+%% Staff Testing Part
 staff = Staff();
 staff.setDurationPerBeat(1/4);
 staff.setBeatPerMeasure(4);
