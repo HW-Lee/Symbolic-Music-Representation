@@ -1,7 +1,5 @@
 clear all; close all;
-import symbMusicModel.measure.*;
-import symbMusicModel.staff.*;
-import symbMusicModel.note.*;
+import symbMusicModel.element.*;
 import symbMusicModel.utilds.*;
 
 array = MutableArray();
@@ -17,3 +15,38 @@ array.insert(3*ones(29, 1), 2);
 if array.size() ~= 41 || sum(array.data(3:31)) ~= 87 || length(array.data) ~= 41
     error('testcase03 incorrect');
 end
+
+staff = Staff();
+staff.setDurationPerBeat(1/4);
+staff.setBeatPerMeasure(4);
+
+G3 = 391.9954;
+F3 = 349.2282;
+E3 = 329.6276;
+D3 = 293.6648;
+C3 = 261.6256;
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', E3) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', E3) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', F3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', D3) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', D3) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', C3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', D3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', E3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', F3) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', G3) ));
+staff.push(meas);

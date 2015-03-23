@@ -2,7 +2,7 @@ classdef Staff < handle
     
     properties
         measures;
-        sumDPM; % sum of duration per measure
+        BPMeasure; % sum of duration per measure
         DPB; % duration per beat
     end
     
@@ -15,7 +15,7 @@ classdef Staff < handle
             end
         end
         function [] = push(obj, measure)
-            if abs(measure.sumDuration - obj.sumDPM/obj.DPB) < 1e-7
+            if abs(measure.sumDuration - obj.BPMeasure*obj.DPB) < 1e-7
                 obj.measures{length(obj.measures)+1} = measure;
             else
                 error('measure error');
@@ -24,8 +24,8 @@ classdef Staff < handle
         function [] = remove(obj, idx)
             obj.measures(idx) = [];
         end
-        function [] = setSumDurationPerMeasure(obj, sumDPM)
-            obj.sumDPM = sumDPM;
+        function [] = setBeatPerMeasure(obj, BPMeasure)
+            obj.BPMeasure = BPMeasure;
         end
         function [] = setDurationPerBeat(obj, DPB)
             obj.DPB = DPB;
