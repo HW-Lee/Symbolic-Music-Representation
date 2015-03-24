@@ -24,6 +24,8 @@ end
 fs = 16000;
 bpm = 170;
 
+
+% Bee
 staff = Staff();
 staff.setDurationPerBeat(1/4);
 staff.setBeatPerMeasure(4);
@@ -80,6 +82,7 @@ sig1 = SingleFreqGenerator.generate(staff, bpm, fs);
 
 
 
+% Minuet in G Major
 staff = Staff();
 staff.setDurationPerBeat(1/4);
 staff.setBeatPerMeasure(3);
