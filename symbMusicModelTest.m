@@ -1,6 +1,7 @@
 clear all; close all;
 import symbMusicModel.element.*;
 import symbMusicModel.utilds.*;
+import symbMusicModel.signalgenerator.*;
 
 
 %% MutableArray Testing Code
@@ -20,37 +21,128 @@ end
 
 
 %% Staff Testing Part
+fs = 16000;
+bpm = 170;
+
 staff = Staff();
 staff.setDurationPerBeat(1/4);
 staff.setBeatPerMeasure(4);
 
-G3 = 391.9954;
-F3 = 349.2282;
-E3 = 329.6276;
-D3 = 293.6648;
-C3 = 261.6256;
-
 meas = Measure();
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', E3) ));
-meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', E3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
 staff.push(meas);
 
 meas = Measure();
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', F3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', D3) ));
-meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', D3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('F3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
 staff.push(meas);
 
 meas = Measure();
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', C3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', D3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', E3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', F3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('F3')) ));
 staff.push(meas);
 
 meas = Measure();
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
-meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', G3) ));
-meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', G3) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
 staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('F3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/2, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 4/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+staff.push(meas);
+
+sig1 = SingleFreqGenerator.generate(staff, bpm, fs);
+
+
+
+staff = Staff();
+staff.setDurationPerBeat(1/4);
+staff.setBeatPerMeasure(3);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('F2s')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('E3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('F3s')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('F2s')) ));
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('D3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('C3')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('F2s')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/8, 'amp', 1, 'freq', Pitch.computeFreq('G2')) ));
+staff.push(meas);
+
+meas = Measure();
+meas.push(Note( struct('duration', 1/4, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 1/16, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+meas.push(Note( struct('duration', 1/16, 'amp', 1, 'freq', Pitch.computeFreq('B2')) ));
+meas.push(Note( struct('duration', 3/8, 'amp', 1, 'freq', Pitch.computeFreq('A2')) ));
+staff.push(meas);
+
+sig2 = SingleFreqGenerator.generate(staff, bpm, fs);
